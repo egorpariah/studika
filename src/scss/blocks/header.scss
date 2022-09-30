@@ -1,0 +1,90 @@
+.header {
+  background: #ffffff;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: stretch;
+    padding-top: $baseModule * 3;
+    padding-bottom: $baseModule * 2;
+
+    @include tablet {
+      padding-top: $baseModule * 2;
+      justify-content: space-between;
+    }
+  }
+
+  &__logo {
+    margin-right: $baseModule * 2;
+  }
+
+  &__city {
+    z-index: 10;
+    margin-right: $baseModule * 2;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-right: $baseModule * 2;
+
+    @include mobile-large {
+      display: none;
+    }
+  }
+
+  &__favorites {
+    margin-left: auto;
+    margin-right: $baseModule * 4;
+
+    @include tablet {
+      margin-right: 0;
+    }
+
+    @include mobile-large {
+      margin-left: 0;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__burger {
+    display: none;
+
+    @include tablet {
+      margin-right: 10px;
+      display: block;
+    }
+
+    @include mobile {
+      margin-right: 0;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    margin-top: $baseModule * 3;
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    @include tablet {
+      display: none;
+    }
+  }
+}

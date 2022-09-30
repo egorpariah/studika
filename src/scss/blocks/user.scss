@@ -1,0 +1,15 @@
+.user {
+  cursor: pointer;
+
+  &__name {
+    margin-right: 8px;
+    line-height: 1.42;
+  }
+
+  &__photo {
+    width: $baseModule * 4;
+    height: $baseModule * 4;
+    border-radius: 50%;
+    background: url("../images/ekaterina.jpg") center center/cover no-repeat;
+  }
+}

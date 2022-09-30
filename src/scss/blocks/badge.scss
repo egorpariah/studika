@@ -1,0 +1,21 @@
+.badge {
+  background: $active;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  padding-left: 16px;
+  color: #ffffff;
+  border-radius: 100px;
+
+  &__remove {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+  }
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+  }
+}

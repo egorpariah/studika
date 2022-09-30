@@ -1,0 +1,29 @@
+//functions
+@function rem($px) {
+  @return calc($px / $baseFontSize) * 1rem;
+}
+
+// mixins
+@mixin desktop-small {
+  @media screen and (max-width: $desktopWidth) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $tabletWidth) {
+    @content;
+  }
+}
+
+@mixin mobile-large {
+  @media screen and (max-width: $mobileLargeWidth) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $mobileWidth) {
+    @content;
+  }
+}

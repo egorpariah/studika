@@ -1,0 +1,33 @@
+// colors
+$grayOnWhite: #f1f1f1;
+$elementBackground: #e6e6e6;
+$popup: #fbfbfb;
+
+$mainText: #222222;
+$descriptor: #767676;
+$icon: #a7a7a7;
+$outline: #d8d8d8;
+
+$active: #0656b4;
+$highlight: #abc8ea;
+
+// variables
+$containerWidth: 1216px;
+$baseFontSize: 14px;
+$baseModule: 8px;
+
+//breakpoints
+$desktopWidth: 1280px;
+$tabletWidth: 768px;
+$mobileLargeWidth: 480px;
+$mobileWidth: 360px;
+
+//media
+@import "media.scss";
+
+// setups
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap");
+@import "base.scss";
+
+//blocks
+@import "blocks/**/*.scss";

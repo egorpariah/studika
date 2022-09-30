@@ -5,72 +5,109 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.min.css">
+  <link rel="stylesheet" href="template/css/styles.min.css">
+  <script defer src="template/js/scripts.min.js"></script>
   <title>СТУДИКА — Тестовое задание</title>
 </head>
 
 <body>
   <div class="wrapper">
     <header class="header">
-      <a href="/" class="header__logo logo">
-        <svg class="logo__pic">
-          <use xlink:href="./images/icons/sprite.svg#logo"></use>
-        </svg>
-      </a>
-      <button class="header__city city">
-        <svg class="city__icon">
-          <use xlink:href="./images/icons/sprite.svg#compass"></use>
-        </svg>
-        <div class="city__name">Любой регион</div>
-      </button>
-      <form class="header__search search">
-        <input class="search__input" type="search" placeholder="Учебное заведение, специальность или профессия">
-      </form>
-      <a href="/" clas +s="header__favorites">0</a>
-      <button class="header__login">Войти</button>
-      <div class="header__user user">
-        <span class="user__name">Екатерина</span>
-        <img src="/" alt="Екатерина" class="user__photo">
+      <div class="header__container container">
+        <button class="header__burger burger">
+          <svg class="burger__icon">
+            <use xlink:href="template/images/sprite.svg#burger"></use>
+          </svg>
+        </button>
+        <a href="/" class="header__logo logo">
+          <svg class="logo__pic">
+            <use xlink:href="template/images/sprite.svg#logo-studika"></use>
+          </svg>
+        </a>
+        <div class="header__city city">
+          <button class="city__button">
+            <svg class="city__icon">
+              <use class="city__icon-link" xlink:href="template/images/sprite.svg#compass"></use>
+            </svg>
+            <address class="city__name">Любой регион</address>
+          </button>
+          <div class="city__popup location-selector hidden">
+            <form class="location-selector__search search">
+              <input class="search__input search__input--popup" name="search-city" data-role="locations-search"
+                type="search" placeholder="Регион, город, населенный пункт">
+            </form>
+            <div class="location-selector__selected hidden">
+            </div>
+            <div class="location-selector__locations">
+              <div class="location-selector__preloader"></div>
+              <ul class="location-selector__list"></ul>
+            </div>
+            <button class="location-selector__button button button--disabled">Сохранить</button>
+          </div>
+        </div>
+        <form class="header__search search">
+          <svg class="search__icon">
+            <use xlink:href="template/images/sprite.svg#search"></use>
+          </svg>
+          <input class="search__input" data-role="main-search" type="search"
+            placeholder="Учебное заведение, специальность или профессия">
+        </form>
+        <a href="/" class="header__favorites favorites">
+          <svg class="favorites__icon">
+            <use xlink:href="template/images/sprite.svg#heart"></use>
+          </svg>
+          <span class="favorites__counter">0</span>
+        </a>
+        <button class="header__login" style="display: none">Войти</button>
+        <a class="header__user user">
+          <span class="user__name">Екатерина</span>
+          <div class="user__photo"></div>
+        </a>
+        <nav class="header__menu menu">
+          <ul class="menu__list">
+            <li class="menu__item">
+              <a href="#" class="menu__link">Вузы</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Колледжи</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Техникумы</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Училища</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Специальности</a>
+              <ul class="menu__dropdown dropdown">
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link">Высшее</a>
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link">Среднее</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Профессии</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Отзывы</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Учебным заведениям</a>
+            </li>
+            <li class="menu__item">
+              <a href="#" class="menu__link">Тест на профориентацию</a>
+            </li>
+          </ul>
+          <a href="/" class="menu__arrow menu__arrow--right">
+            <svg class="menu__arrow-icon">
+              <use xlink:href="template/images/sprite.svg#arrow-right"></use>
+            </svg>
+          </a>
+        </nav>
       </div>
-      <nav class="header__bottom">
-        <ul class="header__menu menu">
-          <li class="menu__item">
-            <a href="#" class="menu__link">Вузы</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Колледжи</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Техникумы</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Училища</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Специальности</a>
-            <ul class="menu__dropdown dropdown visually-hidden">
-              <li class="dropdown__item">
-                <a href="#" class="dropdown__link">Высшее</a>
-              </li>
-              <li class="dropdown__item">
-                <a href="#" class="dropdown__link">Среднее</a>
-              </li>
-            </ul>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Профессии</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Отзывы</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Учебным заведениям</a>
-          </li>
-          <li class="menu__item">
-            <a href="#" class="menu__link">Тест на профориентацию</a>
-          </li>
-        </ul>
-      </nav>
     </header>
   </div>
 </body>

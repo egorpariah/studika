@@ -15,7 +15,6 @@ export default class Header {
   }
 
   async onClick(e) {
-    e.preventDefault();
     e.stopPropagation();
 
     if (this.locationSelector.isHidden) {
@@ -33,10 +32,7 @@ export default class Header {
   }
 
   onDocumentClick(e) {
-    if (
-      !this.locationSelector.isHidden &&
-      !this.locationSelector.element.contains(e.target)
-    ) {
+    if (!this.locationSelector.isHidden) {
       this.locationSelector.hide();
       document.body.removeEventListener("click", this.onDocumentClick);
     }

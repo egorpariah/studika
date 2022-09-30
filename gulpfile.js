@@ -150,7 +150,7 @@ task("watch", () => {
 });
 
 task("deploy", () => {
-  return src(`${DIST_PATH}/**/*`).pipe(ghPages());
+  return src(`${DIST_PATH}/**/*`).pipe(ghPages({ cacheDir: "dist" }));
 });
 
 task(

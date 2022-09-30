@@ -33,6 +33,25 @@ export default class LocationSelector {
       childList: true,
       subtree: true,
     });
+
+    this.setLocationsFromCookies.call(this);
+  }
+
+  setLocationsFromCookies() {
+    const cookies = this.getCookies();
+    let selectedLocations = [];
+    let selectedText = "Любой регион";
+
+    if (cookies["selected_locations"])
+      selectedLocations = JSON.parse(cookies["selected_locations"]);
+
+    for (const item of selectedLocations) {
+      selectedText === "Любой регион"
+        ? (selectedText = item.name)
+        : (selectedText += `, ${item.name}`);
+    }
+
+    document.querySelector(".city__name").textContent = selectedText;
   }
 
   enableSelectedFromCookies() {
@@ -53,7 +72,6 @@ export default class LocationSelector {
       div.classList.add("location-selector__badge", "badge");
       div.dataset.type = item.type;
       div.dataset.id = item.id;
-      item.state ? (div.dataset.state = item.state) : null;
       div.innerHTML = `
           ${text}
           <button class="badge__remove">
@@ -69,12 +87,11 @@ export default class LocationSelector {
   }
 
   toggleSelectedBadge(e) {
-    e.preventDefault();
     e.stopPropagation();
 
     const locationItem = e.target.closest(".location__item");
     const closeButton = e.target.closest(".badge__remove");
-    let type, id, stateId;
+    let type, id;
     if (locationItem) {
       type = locationItem.parentElement.dataset.type;
       id = locationItem.parentElement.dataset.id;
@@ -95,9 +112,6 @@ export default class LocationSelector {
         div.classList.add("location-selector__badge", "badge");
         div.dataset.type = type;
         div.dataset.id = id;
-        locationItem.parentElement.dataset.state
-          ? (div.dataset.state = locationItem.parentElement.dataset.state)
-          : null;
         div.innerHTML = `
           ${text}
           <button class="badge__remove">
@@ -134,9 +148,7 @@ export default class LocationSelector {
     const button = document.createElement("button");
     const spanName = document.createElement("span");
     li.classList.add("location-selector__item", "location");
-    item.type
-      ? (li.dataset.type = item.type)
-      : ((li.dataset.type = "city"), (li.dataset.state = item["state_id"]));
+    item.type ? (li.dataset.type = item.type) : (li.dataset.type = "city");
     li.dataset.id = item.id;
 
     button.classList.add("location__item");
@@ -209,21 +221,38 @@ export default class LocationSelector {
 
   changeSaveButton() {
     const cookies = this.getCookies();
+    let result = [];
+    let cookiesLocations = [];
+
     if (cookies["selected_locations"]) {
-      if (
-        JSON.parse(cookies["selected_locations"]).length !==
-        this.selectedLocations.children.length
-      ) {
-        this.saveButton.classList.remove("button--disabled");
-      } else {
-        this.saveButton.classList.add("button--disabled");
+      cookiesLocations = JSON.parse(cookies["selected_locations"]);
+
+      for (let i = 0; i < cookiesLocations.length; i++) {
+        let disabled = 0;
+        for (let j = 0; j < this.selectedLocations.children.length; j++) {
+          if (
+            cookiesLocations[i].name ===
+            this.selectedLocations.children[j].textContent.trim()
+          ) {
+            disabled = 1;
+            break;
+          } else {
+            disabled = 0;
+          }
+        }
+
+        result.push(disabled);
       }
+    }
+
+    if (this.selectedLocations.children.length > cookiesLocations.length) {
+      result.push(0);
+    }
+
+    if (result.includes(0)) {
+      this.saveButton.classList.remove("button--disabled");
     } else {
-      if (this.selectedLocations.children.length) {
-        this.saveButton.classList.remove("button--disabled");
-      } else {
-        this.saveButton.classList.add("button--disabled");
-      }
+      this.saveButton.classList.add("button--disabled");
     }
   }
 
@@ -239,9 +268,10 @@ export default class LocationSelector {
 
       dataObject.type = child.dataset.type;
       dataObject.id = child.dataset.id;
-      child.dataset.state ? (dataObject.state = child.dataset.state) : null;
+      dataObject.name = child.textContent.trim();
 
       selectedData.push(dataObject);
+
       selectedText === "Любой регион"
         ? (selectedText = child.textContent.trim())
         : (selectedText += `, ${child.textContent.trim()}`);

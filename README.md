@@ -2,7 +2,7 @@
 
 Задача: адаптивно сверстать шапку и реализовать функционал выбора городов.
 
-Деплой проекта на GitHub Pages — [СТУДИКА](https://egorpariah.github.io/studika-test/)
+Деплой проекта на GitHub Pages — [СТУДИКА](https://egorpariah.github.io/studika/)
 
 ## Выполнил:
 
